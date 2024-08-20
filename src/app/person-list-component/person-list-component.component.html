@@ -1,0 +1,15 @@
+<div *ngFor="let person of personList">
+    <div [class.edited]="person.edited" [class.deleted]="person.deleted">
+        {{person.name}}
+        <!-- <span *ngFor="let rat of rating(person.rating)">*</span> 
+            digunakan jika menggunakan  rating (n:number yg ada di ts)-->
+
+            <span *ngFor="let i of [].constructor(person.rating)">*</span>
+        <span *ngIf="person.edited && !person.deleted">(Edited)</span>
+        <span *ngIf="person.deleted">(Deleted)</span>
+        <div>
+            <button *ngIf = "person.canEdit && !person.deleted" (click)="onEditClick(person)">Edit</button>
+            <button *ngIf = "person.canDelete && !person.deleted" (click)="onDeleteClick(person)">Delete</button>
+        </div>
+    </div>
+</div>
